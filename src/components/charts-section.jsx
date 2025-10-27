@@ -103,8 +103,8 @@ export function ChartsSection({ startDate, endDate }) {
               <CardTitle className="text-base">{chart.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={250}>
-                <LineChart data={monthlyData}>
+              <ResponsiveContainer width="100%" height={280}>
+                <LineChart data={monthlyData} margin={{ top: 20, right: 20, bottom: 5, left: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis dataKey="month" stroke="#6b7280" style={{ fontSize: "12px" }} />
                   <YAxis stroke="#6b7280" style={{ fontSize: "12px" }} tickFormatter={formatValue} />
