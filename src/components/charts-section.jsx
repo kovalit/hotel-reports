@@ -88,9 +88,9 @@ export function ChartsSection({ startDate, endDate }) {
     { title: "Количество посещений", dataKey: "visits", color: "#3b82f6" },
     { title: "Количество бронирований", dataKey: "bookings", color: "#10b981" },
     { title: "Конверсия (%)", dataKey: "conversion", color: "#8b5cf6" },
-    { title: "Сумма бронирований ($)", dataKey: "amount", color: "#f59e0b" },
-    { title: "Общая стоимость номеров ($)", dataKey: "roomPrices", color: "#ef4444" },
-    { title: "Общая стоимость доп. услуг ($)", dataKey: "services", color: "#ec4899" },
+    { title: "Сумма бронирований (₽)", dataKey: "amount", color: "#f59e0b" },
+    { title: "Общая стоимость номеров (₽)", dataKey: "roomPrices", color: "#ef4444" },
+    { title: "Общая стоимость доп. услуг (₽)", dataKey: "services", color: "#ec4899" },
   ]
 
   return (

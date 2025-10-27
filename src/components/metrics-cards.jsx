@@ -20,19 +20,19 @@ export function MetricsCards({ data }) {
     },
     {
       title: "Сумма бронирований",
-      value: `$${data.amount.toLocaleString()}`,
+      value: `₽${data.amount.toLocaleString()}`,
       icon: DollarSign,
       color: "text-purple-600",
     },
     {
       title: "Общая стоимость номеров",
-      value: `$${data.amount_rooms.toLocaleString()}`,
+      value: `₽${data.amount_rooms.toLocaleString()}`,
       icon: Home,
       color: "text-orange-600",
     },
     {
       title: "Общая стоимость доп. услуг",
-      value: `$${data.amount_services.toLocaleString()}`,
+      value: `₽${data.amount_services.toLocaleString()}`,
       icon: Sparkles,
       color: "text-pink-600",
     },

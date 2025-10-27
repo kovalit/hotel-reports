@@ -13,7 +13,7 @@ export function Sidebar() {
   const location = useLocation()
 
   return (
-    <aside className="w-64 border-r border-border bg-card">
+    <aside className="sticky top-16 h-[calc(100vh-4rem)] w-64 border-r border-border bg-card overflow-y-auto">
       <div className="p-4">
         <nav className="flex flex-col gap-1">
           {menuItems.map((item) => {

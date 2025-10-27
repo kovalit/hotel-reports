@@ -47,11 +47,12 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
             </Button>
           </PopoverTrigger>
           {startOpen && (
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent className="w-auto p-0" align="end">
               <Calendar
                 selected={startDate ? new Date(startDate) : undefined}
                 onSelect={handleStartDateSelect}
                 defaultMonth={startDate ? new Date(startDate) : new Date()}
+                className="scale-110"
               />
             </PopoverContent>
           )}
@@ -67,11 +68,12 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
             </Button>
           </PopoverTrigger>
           {endOpen && (
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent className="w-auto p-0" align="end">
               <Calendar
                 selected={endDate ? new Date(endDate) : undefined}
                 onSelect={handleEndDateSelect}
                 defaultMonth={endDate ? new Date(endDate) : new Date()}
+                className="scale-110"
               />
             </PopoverContent>
           )}

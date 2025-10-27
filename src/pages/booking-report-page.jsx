@@ -32,14 +32,15 @@ export function BookingReportPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-semibold text-foreground">Отчет по бронированиям</h1>
-
-      <DateRangePicker
-        startDate={startDate}
-        endDate={endDate}
-        onStartDateChange={setStartDate}
-        onEndDateChange={setEndDate}
-      />
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-semibold text-foreground">Отчет по бронированиям</h1>
+        <DateRangePicker
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={setStartDate}
+          onEndDateChange={setEndDate}
+        />
+      </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
