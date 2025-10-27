@@ -18,6 +18,15 @@ const formatLabel = (value) => {
   return Math.round(value)
 }
 
+const ConversionLabel = (props) => {
+  const { x, y, value } = props
+  return (
+    <text x={x} y={y - 10} fill="#374151" textAnchor="middle" fontSize={11} fontWeight={500}>
+      {Number(value).toFixed(2)}
+    </text>
+  )
+}
+
 const CustomLabel = (props) => {
   const { x, y, value } = props
   return (
@@ -87,7 +96,7 @@ export function ChartsSection({ startDate, endDate }) {
   const charts = [
     { title: "Количество посещений", dataKey: "visits", color: "#3b82f6" },
     { title: "Количество бронирований", dataKey: "bookings", color: "#10b981" },
-    { title: "Конверсия (%)", dataKey: "conversion", color: "#8b5cf6" },
+    { title: "Конверсия (%)", dataKey: "conversion", color: "#8b5cf6", labelComponent: ConversionLabel },
     { title: "Сумма бронирований (₽)", dataKey: "amount", color: "#f59e0b" },
     { title: "Общая стоимость номеров (₽)", dataKey: "roomPrices", color: "#ef4444" },
     { title: "Общая стоимость доп. услуг (₽)", dataKey: "services", color: "#ec4899" },
@@ -121,7 +130,7 @@ export function ChartsSection({ startDate, endDate }) {
                     stroke={chart.color}
                     strokeWidth={2}
                     dot={{ r: 4 }}
-                    label={<CustomLabel />}
+                    label={chart.labelComponent || <CustomLabel />}
                   />
                 </LineChart>
               </ResponsiveContainer>
