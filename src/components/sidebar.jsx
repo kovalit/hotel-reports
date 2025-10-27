@@ -1,0 +1,43 @@
+import { Link, useLocation } from "react-router-dom"
+import { BarChart3, FileText, Users, Settings, Calendar } from "lucide-react"
+
+const menuItems = [
+  { id: "booking-report", label: "Отчет по бронированиям", icon: BarChart3, path: "/booking-report" },
+  { id: "income-report", label: "Отчет по доходам", icon: FileText, path: "/income-report" },
+  { id: "guest-report", label: "Отчет по гостям", icon: Users, path: "#" },
+  { id: "occupancy-report", label: "Отчет по заполняемости", icon: Calendar, path: "#" },
+  { id: "settings", label: "Настройки", icon: Settings, path: "#" },
+]
+
+export function Sidebar() {
+  const location = useLocation()
+
+  return (
+    <aside className="w-64 border-r border-border bg-card">
+      <div className="p-4">
+        <nav className="flex flex-col gap-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon
+            const isActive =
+              location.pathname === item.path || (location.pathname === "/" && item.id === "booking-report")
+
+            return (
+              <Link
+                key={item.id}
+                to={item.path}
+                className={`flex items-center justify-start gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-left ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                }`}
+              >
+                <Icon className="h-5 w-5 flex-shrink-0" />
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
+      </div>
+    </aside>
+  )
+}
