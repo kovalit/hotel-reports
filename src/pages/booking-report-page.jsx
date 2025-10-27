@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { DateRangePicker } from "../components/date-range-picker"
 import { MetricsCards } from "../components/metrics-cards"
 import { ChartsSection } from "../components/charts-section"
+import { UserActionsSection } from "../components/user-actions-section"
 
 export function BookingReportPage() {
   const [startDate, setStartDate] = useState("2024-08-01")
@@ -50,6 +51,7 @@ export function BookingReportPage() {
         <>
           <MetricsCards data={data} />
           <ChartsSection startDate={startDate} endDate={endDate} />
+          <UserActionsSection startDate={startDate} endDate={endDate} />
         </>
       ) : (
         <div className="flex items-center justify-center py-12">
@@ -59,3 +61,5 @@ export function BookingReportPage() {
     </div>
   )
 }
+
+export default BookingReportPage
