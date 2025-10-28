@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label } from "recharts"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
 const formatValue = (value) => {
   if (value >= 1000) {
@@ -15,7 +15,8 @@ const formatLabelValue = (value) => {
   return Math.round(value).toLocaleString()
 }
 
-const DataLabel = ({ x, y, value }) => {
+const DataLabel = (props) => {
+  const { x, y, value } = props
   return (
     <text x={x} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
       {formatLabelValue(value)}
@@ -55,9 +56,14 @@ export function ServicesCharts({ data }) {
                     borderRadius: "6px",
                   }}
                 />
-                <Line type="monotone" dataKey="select_services" stroke="#3b82f6" strokeWidth={2} dot={{ r: 4 }}>
-                  <Label content={<DataLabel />} position="top" />
-                </Line>
+                <Line
+                  type="monotone"
+                  dataKey="select_services"
+                  stroke="#3b82f6"
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  label={<DataLabel />}
+                />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -81,9 +87,14 @@ export function ServicesCharts({ data }) {
                   }}
                   formatter={(value) => [`₽${value.toLocaleString()}`, "Стоимость"]}
                 />
-                <Line type="monotone" dataKey="amount_services" stroke="#ec4899" strokeWidth={2} dot={{ r: 4 }}>
-                  <Label content={<DataLabel />} position="top" />
-                </Line>
+                <Line
+                  type="monotone"
+                  dataKey="amount_services"
+                  stroke="#ec4899"
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  label={<DataLabel />}
+                />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
