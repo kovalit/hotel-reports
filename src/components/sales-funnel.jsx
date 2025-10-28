@@ -32,7 +32,7 @@ export function SalesFunnel({ data, title, dateRange }) {
     key,
     label: STAGE_LABELS[key],
     value: data[key] || 0,
-    conversion: (((data[key] || 0) / data.total) * 100).toFixed(0),
+    conversion: (((data[key] || 0) / data.total) * 100).toFixed(2),
     color: COLORS[index],
   }))
 
@@ -52,8 +52,11 @@ export function SalesFunnel({ data, title, dateRange }) {
         <div className="space-y-8">
           {/* Stage columns */}
           <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-            {stageData.map((stage) => (
-              <div key={stage.key} className="flex flex-col items-center text-center space-y-2">
+            {stageData.map((stage, index) => (
+              <div key={stage.key} className="flex flex-col items-center text-center space-y-2 relative">
+                {index > 0 && (
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-200" style={{ marginLeft: "-0.5rem" }} />
+                )}
                 <div className="text-sm text-muted-foreground whitespace-pre-line min-h-[40px] flex items-center">
                   {stage.label}
                 </div>
