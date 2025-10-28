@@ -1,6 +1,5 @@
 "use client"
-
-import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from "recharts"
 
@@ -18,56 +17,8 @@ const CustomBarLabel = (props) => {
   )
 }
 
-export function UserActionsSection({ startDate, endDate }) {
-  const [monthlyData, setMonthlyData] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchMonthlyData = async () => {
-      setLoading(true)
-      try {
-        const start = new Date(startDate)
-        const end = new Date(endDate)
-        const months = []
-
-        const current = new Date(start.getFullYear(), start.getMonth(), 1)
-        while (
-          current.getFullYear() < end.getFullYear() ||
-          (current.getFullYear() === end.getFullYear() && current.getMonth() <= end.getMonth())
-        ) {
-          const monthStart = new Date(current.getFullYear(), current.getMonth(), 1)
-          const monthEnd = new Date(current.getFullYear(), current.getMonth() + 1, 0)
-
-          const response = await fetch(
-            `https://visits-api.whatsbetter.me/api/booking-funnel-summary?startDate=${monthStart.toISOString().split("T")[0]}&endDate=${monthEnd.toISOString().split("T")[0]}`,
-          )
-          const data = await response.json()
-
-          months.push({
-            month: monthStart.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }),
-            open_booking_module: data.open_booking_module,
-            select_room: data.select_room,
-            select_rateplan: data.select_rateplan,
-            select_services: data.select_services,
-            registration: data.registration,
-            booking: data.booking,
-            pay: data.pay,
-            total: data.total,
-          })
-
-          current.setMonth(current.getMonth() + 1)
-        }
-
-        setMonthlyData(months)
-      } catch (error) {
-        console.error("Error fetching user actions data:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchMonthlyData()
-  }, [startDate, endDate])
+export function UserActionsSection() {
+  const { monthlyData, loading } = useSelector((state) => state.booking)
 
   if (loading) {
     return (

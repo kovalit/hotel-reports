@@ -1,6 +1,5 @@
 "use client"
-
-import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
@@ -36,54 +35,8 @@ const CustomLabel = (props) => {
   )
 }
 
-export function ChartsSection({ startDate, endDate }) {
-  const [monthlyData, setMonthlyData] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchMonthlyData = async () => {
-      setLoading(true)
-      try {
-        const start = new Date(startDate)
-        const end = new Date(endDate)
-        const months = []
-
-        const current = new Date(start.getFullYear(), start.getMonth(), 1)
-        while (
-          current.getFullYear() < end.getFullYear() ||
-          (current.getFullYear() === end.getFullYear() && current.getMonth() <= end.getMonth())
-        ) {
-          const monthStart = new Date(current.getFullYear(), current.getMonth(), 1)
-          const monthEnd = new Date(current.getFullYear(), current.getMonth() + 1, 0)
-
-          const response = await fetch(
-            `https://visits-api.whatsbetter.me/api/booking-funnel-summary?startDate=${monthStart.toISOString().split("T")[0]}&endDate=${monthEnd.toISOString().split("T")[0]}`,
-          )
-          const data = await response.json()
-
-          months.push({
-            month: monthStart.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }),
-            visits: data.total,
-            bookings: data.pay,
-            conversion: data.total > 0 ? ((data.pay / data.total) * 100).toFixed(2) : 0,
-            amount: data.amount,
-            roomPrices: data.amount_rooms,
-            services: data.amount_services,
-          })
-
-          current.setMonth(current.getMonth() + 1)
-        }
-
-        setMonthlyData(months)
-      } catch (error) {
-        console.error("Error fetching monthly data:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchMonthlyData()
-  }, [startDate, endDate])
+export function ChartsSection() {
+  const { monthlyData, loading } = useSelector((state) => state.booking)
 
   if (loading) {
     return (

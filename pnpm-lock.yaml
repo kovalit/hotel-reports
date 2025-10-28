@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@reduxjs/toolkit':
+        specifier: latest
+        version: 2.9.2(react-redux@9.2.0(@types/react@19.2.2)(react@18.2.0)(redux@5.0.1))(react@18.2.0)
       '@rspack/core':
         specifier: latest
         version: 1.5.8(@swc/helpers@0.5.15)
@@ -41,12 +44,18 @@ importers:
       react-dom:
         specifier: latest
         version: 19.2.0(react@18.2.0)
+      react-redux:
+        specifier: latest
+        version: 9.2.0(@types/react@19.2.2)(react@18.2.0)(redux@5.0.1)
       react-router-dom:
         specifier: latest
         version: 7.9.4(react-dom@19.2.0(react@18.2.0))(react@18.2.0)
       recharts:
         specifier: latest
         version: 3.3.0(@types/react@19.2.2)(react-dom@19.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(redux@5.0.1)
+      redux:
+        specifier: latest
+        version: 5.0.1
       tailwind-merge:
         specifier: ^2.5.5
         version: 2.5.5
