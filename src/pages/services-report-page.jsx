@@ -13,8 +13,8 @@ export function ServicesReportPage() {
   const { summary, monthlyData, servicesList, loading } = useSelector((state) => state.services)
 
   const [dateRange, setDateRange] = useState({
-    from: new Date(2024, 7, 1),
-    to: new Date(2024, 11, 31),
+    from: new Date(2024, 7, 1), // August 1, 2024
+    to: new Date(2024, 11, 31), // December 31, 2024
   })
 
   useEffect(() => {

@@ -28,6 +28,8 @@ export function ServicesCharts({ data }) {
     return <div className="text-center text-muted-foreground">Нет данных для отображения</div>
   }
 
+  const filteredData = data.filter((item) => item.month !== "Июль")
+
   return (
     <div className="space-y-6">
       <h2 className="text-lg font-semibold text-foreground">Динамика по месяцам</h2>
@@ -39,7 +41,7 @@ export function ServicesCharts({ data }) {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
-              <LineChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
+              <LineChart data={filteredData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis dataKey="month" stroke="#6b7280" fontSize={12} />
                 <YAxis stroke="#6b7280" fontSize={12} tickFormatter={formatValue} />
@@ -64,7 +66,7 @@ export function ServicesCharts({ data }) {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
-              <LineChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
+              <LineChart data={filteredData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis dataKey="month" stroke="#6b7280" fontSize={12} />
                 <YAxis stroke="#6b7280" fontSize={12} tickFormatter={formatValue} />
