@@ -61,7 +61,7 @@ export function Calendar({ selected, onSelect, defaultMonth, className = "" }) {
         <Button variant="outline" size="icon" onClick={handlePrevMonth}>
           ←
         </Button>
-        <div className="font-semibold">
+        <div className="text-sm font-medium">
           {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
         </div>
         <Button variant="outline" size="icon" onClick={handleNextMonth}>

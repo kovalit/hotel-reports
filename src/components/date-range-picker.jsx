@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "./ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
@@ -9,6 +9,26 @@ import { Button } from "./ui/button"
 export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDateChange }) {
   const [startOpen, setStartOpen] = useState(false)
   const [endOpen, setEndOpen] = useState(false)
+  const startPopoverRef = useRef(null)
+  const endPopoverRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (startPopoverRef.current && !startPopoverRef.current.contains(event.target)) {
+        setStartOpen(false)
+      }
+      if (endPopoverRef.current && !endPopoverRef.current.contains(event.target)) {
+        setEndOpen(false)
+      }
+    }
+
+    if (startOpen || endOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside)
+      }
+    }
+  }, [startOpen, endOpen])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -39,7 +59,7 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
     <div className="flex items-center gap-4">
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium text-foreground">Период:</span>
-        <Popover>
+        <Popover ref={startPopoverRef}>
           <PopoverTrigger asChild onClick={() => setStartOpen(!startOpen)}>
             <Button variant="outline" className="w-[200px] justify-start text-left font-normal bg-transparent">
               <CalendarIcon className="mr-2 h-4 w-4" />
@@ -60,7 +80,7 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
 
         <span className="text-muted-foreground">до</span>
 
-        <Popover>
+        <Popover ref={endPopoverRef}>
           <PopoverTrigger asChild onClick={() => setEndOpen(!endOpen)}>
             <Button variant="outline" className="w-[200px] justify-start text-left font-normal bg-transparent">
               <CalendarIcon className="mr-2 h-4 w-4" />

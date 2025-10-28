@@ -1,8 +1,16 @@
 "use client"
 
-export function Popover({ children }) {
-  return <div className="relative inline-block">{children}</div>
-}
+import { forwardRef } from "react"
+
+export const Popover = forwardRef(({ children }, ref) => {
+  return (
+    <div ref={ref} className="relative inline-block">
+      {children}
+    </div>
+  )
+})
+
+Popover.displayName = "Popover"
 
 export function PopoverTrigger({ children, asChild, onClick }) {
   if (asChild) {
