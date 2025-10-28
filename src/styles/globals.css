@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme for admin dashboard */
+  --background: 0 0% 98%;
+  --foreground: 240 5% 20%;
+  --card: 0 0% 96%;
+  --card-foreground: 240 5% 20%;
+  --popover: 0 0% 98%;
+  --popover-foreground: 240 5% 20%;
+  --primary: 250 60% 55%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 94%;
+  --secondary-foreground: 240 5% 20%;
+  --muted: 0 0% 92%;
+  --muted-foreground: 240 2% 50%;
+  --accent: 250 60% 55%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 250 60% 55%;
+  --chart-1: 250 60% 55%;
+  --chart-2: 200 50% 65%;
+  --chart-3: 160 40% 70%;
+  --chart-4: 280 55% 60%;
+  --chart-5: 320 45% 68%;
+  --radius: 0.5rem;
+  --sidebar: 0 0% 96%;
+  --sidebar-foreground: 240 5% 20%;
+  --sidebar-primary: 250 60% 55%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 0 0% 94%;
+  --sidebar-accent-foreground: 240 5% 20%;
+  --sidebar-border: 0 0% 88%;
+  --sidebar-ring: 250 60% 55%;
+}
+
+.dark {
+  --background: 240 5% 15%;
+  --foreground: 0 0% 98%;
+  --card: 240 5% 18%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 5% 18%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 250 60% 55%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 5% 25%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 35%;
+  --muted-foreground: 240 2% 65%;
+  --accent: 250 60% 55%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5% 25%;
+  --input: 240 5% 25%;
+  --ring: 250 60% 55%;
+  --chart-1: 250 60% 55%;
+  --chart-2: 200 50% 65%;
+  --chart-3: 160 40% 70%;
+  --chart-4: 280 55% 60%;
+  --chart-5: 320 45% 68%;
+  --sidebar: 240 5% 18%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 250 60% 55%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 5% 25%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 240 5% 25%;
+  --sidebar-ring: 250 60% 55%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
