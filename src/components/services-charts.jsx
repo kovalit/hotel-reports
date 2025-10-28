@@ -28,7 +28,10 @@ export function ServicesCharts({ data }) {
     return <div className="text-center text-muted-foreground">Нет данных для отображения</div>
   }
 
-  const filteredData = data.filter((item) => item.month !== "Июль")
+  const filteredData = data.filter((item) => {
+    const [year, month] = item.monthKey.split("-")
+    return Number.parseInt(month) >= 8 // Only include August (8) through December (12)
+  })
 
   return (
     <div className="space-y-6">
