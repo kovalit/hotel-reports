@@ -1,12 +1,11 @@
 import { Link, useLocation } from "react-router-dom"
-import { BarChart3, FileText, Users, Settings, Calendar } from "lucide-react"
+import { BarChart3, FileText, Users, Calendar } from "lucide-react"
 
 const menuItems = [
-  { id: "booking-report", label: "Отчет по бронированиям", icon: BarChart3, path: "/booking-report" },
-  { id: "income-report", label: "Отчет по доходам", icon: FileText, path: "/income-report" },
-  { id: "guest-report", label: "Отчет по гостям", icon: Users, path: "#" },
-  { id: "occupancy-report", label: "Отчет по заполняемости", icon: Calendar, path: "#" },
-  { id: "settings", label: "Настройки", icon: Settings, path: "#" },
+  { id: "booking-report", label: "Бронирования", icon: BarChart3, path: "/booking-report" },
+  { id: "income-report", label: "Услуги", icon: FileText, path: "/income-report" },
+  { id: "guest-report", label: "Гости", icon: Users, path: "#" },
+  { id: "occupancy-report", label: "Заполняемость", icon: Calendar, path: "#" },
 ]
 
 export function Sidebar() {
@@ -15,6 +14,9 @@ export function Sidebar() {
   return (
     <aside className="sticky top-16 h-[calc(100vh-4rem)] w-64 border-r border-border bg-card overflow-y-auto">
       <div className="p-4">
+        <div className="px-4 py-2 mb-2">
+          <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Отчеты</h3>
+        </div>
         <nav className="flex flex-col gap-1">
           {menuItems.map((item) => {
             const Icon = item.icon
