@@ -5,6 +5,7 @@ import { DateRangePicker } from "../components/date-range-picker"
 import { MetricsCards } from "../components/metrics-cards"
 import { ChartsSection } from "../components/charts-section"
 import { UserActionsSection } from "../components/user-actions-section"
+import { SalesFunnelSection } from "../components/sales-funnel-section"
 
 export function BookingReportPage() {
   const [startDate, setStartDate] = useState("2024-08-01")
@@ -52,6 +53,7 @@ export function BookingReportPage() {
           <MetricsCards data={data} />
           <ChartsSection startDate={startDate} endDate={endDate} />
           <UserActionsSection startDate={startDate} endDate={endDate} />
+          <SalesFunnelSection startDate={startDate} endDate={endDate} />
         </>
       ) : (
         <div className="flex items-center justify-center py-12">
