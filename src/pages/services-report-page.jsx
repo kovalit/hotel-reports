@@ -12,27 +12,27 @@ export function ServicesReportPage() {
   const dispatch = useDispatch()
   const { summary, monthlyData, servicesList, loading } = useSelector((state) => state.services)
 
-  const [dateRange, setDateRange] = useState({
-    from: new Date(2024, 7, 1), // August 1, 2024
-    to: new Date(2024, 11, 31), // December 31, 2024
-  })
+  const [startDate, setStartDate] = useState("2024-08-01")
+  const [endDate, setEndDate] = useState("2024-12-31")
 
   useEffect(() => {
-    if (dateRange.from && dateRange.to) {
-      const startDate = dateRange.from.toISOString().split("T")[0]
-      const endDate = dateRange.to.toISOString().split("T")[0]
-
+    if (startDate && endDate) {
       dispatch(fetchServicesSummary({ startDate, endDate }))
       dispatch(fetchMonthlyServicesData({ startDate, endDate }))
       dispatch(fetchServicesList({ startDate, endDate }))
     }
-  }, [dateRange, dispatch])
+  }, [startDate, endDate, dispatch])
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-semibold text-foreground">Услуги</h1>
-        <DateRangePicker dateRange={dateRange} onDateRangeChange={setDateRange} />
+        <DateRangePicker
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={setStartDate}
+          onEndDateChange={setEndDate}
+        />
       </div>
 
       {loading && <div className="text-center text-muted-foreground">Загрузка данных...</div>}
