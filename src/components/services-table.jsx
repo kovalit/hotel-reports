@@ -70,29 +70,29 @@ export function ServicesTable({ data }) {
             <table className="w-full bg-white">
               <thead>
                 <tr className="border-b bg-muted/50">
-                  <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">№</th>
+                  <th className="py-3 text-left text-sm font-medium text-muted-foreground">№</th>
                   <th
-                    className="px-4 py-3 text-left text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
+                    className="py-3 text-left text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
                     onClick={() => handleSort("label")}
                   >
                     Название услуги
                     <SortIndicator columnKey="label" />
                   </th>
                   <th
-                    className="px-4 py-3 text-right text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
+                    className="py-3 text-right text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
                     onClick={() => handleSort("count")}
                   >
                     Количество
                     <SortIndicator columnKey="count" />
                   </th>
                   <th
-                    className="px-4 py-3 text-right text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
+                    className="py-3 text-right text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground"
                     onClick={() => handleSort("amount_price")}
                   >
                     Общая стоимость
                     <SortIndicator columnKey="amount_price" />
                   </th>
-                  <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">Доля, %</th>
+                  <th className="py-3 text-right text-sm font-medium text-muted-foreground">Доля, %</th>
                 </tr>
               </thead>
               <tbody className="bg-white">
@@ -100,27 +100,27 @@ export function ServicesTable({ data }) {
                   const share = totalAmount > 0 ? ((service.amount_price / totalAmount) * 100).toFixed(2) : 0
                   return (
                     <tr key={service.id} className="border-b last:border-0 hover:bg-muted/30">
-                      <td className="px-4 py-3 text-sm text-foreground">{index + 1}</td>
-                      <td className="px-4 py-3 text-sm text-foreground">{service.label}</td>
-                      <td className="px-4 py-3 text-right text-sm text-foreground">{service.count.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-right text-sm text-foreground">
+                      <td className="py-3 text-sm text-foreground">{index + 1}</td>
+                      <td className="py-3 text-sm text-foreground">{service.label}</td>
+                      <td className="py-3 text-right text-sm text-foreground">{service.count.toLocaleString()}</td>
+                      <td className="py-3 text-right text-sm text-foreground">
                         ₽{service.amount_price.toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-right text-sm text-foreground">{share}%</td>
+                      <td className="py-3 text-right text-sm text-foreground">{share}%</td>
                     </tr>
                   )
                 })}
               </tbody>
               <tfoot>
                 <tr className="border-t-2 bg-muted/30 font-semibold">
-                  <td className="px-4 py-3 text-sm text-foreground" colSpan="2">
+                  <td className="py-3 text-sm text-foreground" colSpan="2">
                     Итого
                   </td>
-                  <td className="px-4 py-3 text-right text-sm text-foreground">
+                  <td className="py-3 text-right text-sm text-foreground">
                     {data.reduce((sum, s) => sum + s.count, 0).toLocaleString()}
                   </td>
-                  <td className="px-4 py-3 text-right text-sm text-foreground">₽{totalAmount.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right text-sm text-foreground">100.00%</td>
+                  <td className="py-3 text-right text-sm text-foreground">₽{totalAmount.toLocaleString()}</td>
+                  <td className="py-3 text-right text-sm text-foreground">100.00%</td>
                 </tr>
               </tfoot>
             </table>

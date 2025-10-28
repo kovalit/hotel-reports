@@ -41,7 +41,7 @@ export function ServicesCharts({ data }) {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Количество выбравших услуги</CardTitle>
+            <CardTitle className="text-base">Выбор услуг</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
