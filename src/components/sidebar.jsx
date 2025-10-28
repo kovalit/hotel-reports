@@ -3,7 +3,7 @@ import { BarChart3, FileText, Users, Calendar } from "lucide-react"
 
 const menuItems = [
   { id: "booking-report", label: "Бронирования", icon: BarChart3, path: "/booking-report" },
-  { id: "income-report", label: "Услуги", icon: FileText, path: "/income-report" },
+  { id: "services-report", label: "Услуги", icon: FileText, path: "/services-report" },
   { id: "guest-report", label: "Гости", icon: Users, path: "#" },
   { id: "occupancy-report", label: "Заполняемость", icon: Calendar, path: "#" },
 ]
