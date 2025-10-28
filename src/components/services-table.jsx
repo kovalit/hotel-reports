@@ -21,7 +21,6 @@ export function ServicesTable({ data }) {
         bValue = b.amount_price / b.count
       }
 
-      // Handle string comparison for label
       if (sortConfig.key === "label") {
         aValue = aValue.toLowerCase()
         bValue = bValue.toLowerCase()
@@ -108,10 +107,10 @@ export function ServicesTable({ data }) {
                 <tr key={service.id} className="border-b last:border-0 hover:bg-muted/30">
                   <td className="px-4 py-3 text-sm text-foreground">{index + 1}</td>
                   <td className="px-4 py-3 text-sm text-foreground">{service.label}</td>
-                  <td className="px-4 py-3 text-right text-sm text-foreground">₽{averagePrice.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right text-sm text-foreground">{averagePrice.toLocaleString()} ₽</td>
                   <td className="px-4 py-3 text-right text-sm text-foreground">{service.count.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right text-sm text-foreground">
-                    ₽{service.amount_price.toLocaleString()}
+                  <td className="px-4 py-3 text-right text-sm text-foreground font-bold">
+                    {service.amount_price.toLocaleString()} ₽
                   </td>
                   <td className="px-4 py-3 text-right text-sm text-foreground">{share}%</td>
                 </tr>
@@ -127,7 +126,7 @@ export function ServicesTable({ data }) {
               <td className="px-4 py-3 text-right text-sm text-foreground">
                 {data.reduce((sum, s) => sum + s.count, 0).toLocaleString()}
               </td>
-              <td className="px-4 py-3 text-right text-sm text-foreground">₽{totalAmount.toLocaleString()}</td>
+              <td className="px-4 py-3 text-right text-sm text-foreground">{totalAmount.toLocaleString()} ₽</td>
               <td className="px-4 py-3 text-right text-sm text-foreground">100.00%</td>
             </tr>
           </tfoot>
