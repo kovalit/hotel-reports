@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
 const formatValue = (value) => {
   if (value >= 1000) {
@@ -17,18 +17,17 @@ const formatLabelValue = (value) => {
 
 // Custom label for first chart showing value and conversion to total
 const TrafficCaptureLabel = (props) => {
-  const { x, y, value, payload } = props
-  // Safety check for undefined payload
+  const { x, y, width, value, payload } = props
   if (!payload || !payload.total) {
     return null
   }
   const conversion = payload.total > 0 ? ((value / payload.total) * 100).toFixed(2) : 0
   return (
     <g>
-      <text x={x} y={y - 20} fill="#6b7280" textAnchor="middle" fontSize={12}>
+      <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
         {formatLabelValue(value)}
       </text>
-      <text x={x} y={y - 8} fill="#9ca3af" textAnchor="middle" fontSize={11}>
+      <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
         {conversion}%
       </text>
     </g>
@@ -37,18 +36,17 @@ const TrafficCaptureLabel = (props) => {
 
 // Custom label for second chart showing value and conversion to open_whatsbetter_me
 const BookingLabel = (props) => {
-  const { x, y, value, payload } = props
-  // Safety check for undefined payload
+  const { x, y, width, value, payload } = props
   if (!payload || !payload.open_whatsbetter_me) {
     return null
   }
   const conversion = payload.open_whatsbetter_me > 0 ? ((value / payload.open_whatsbetter_me) * 100).toFixed(2) : 0
   return (
     <g>
-      <text x={x} y={y - 20} fill="#6b7280" textAnchor="middle" fontSize={12}>
+      <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
         {formatLabelValue(value)}
       </text>
-      <text x={x} y={y - 8} fill="#9ca3af" textAnchor="middle" fontSize={11}>
+      <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
         {conversion}%
       </text>
     </g>
@@ -76,7 +74,7 @@ export function TrafficCharts({ data }) {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={filteredData} margin={{ top: 30, right: 20, left: 0, bottom: 0 }}>
+              <BarChart data={filteredData} margin={{ top: 50, right: 20, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis dataKey="month" stroke="#6b7280" fontSize={12} />
                 <YAxis stroke="#6b7280" fontSize={12} tickFormatter={formatValue} />
@@ -87,15 +85,13 @@ export function TrafficCharts({ data }) {
                     borderRadius: "6px",
                   }}
                 />
-                <Line
-                  type="monotone"
+                <Bar
                   dataKey="open_whatsbetter_me"
-                  stroke="#3b82f6"
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
+                  fill="#3b82f6"
+                  radius={[4, 4, 0, 0]}
                   label={(props) => <TrafficCaptureLabel {...props} />}
                 />
-              </LineChart>
+              </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
@@ -106,7 +102,7 @@ export function TrafficCharts({ data }) {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={filteredData} margin={{ top: 30, right: 20, left: 0, bottom: 0 }}>
+              <BarChart data={filteredData} margin={{ top: 50, right: 20, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis dataKey="month" stroke="#6b7280" fontSize={12} />
                 <YAxis stroke="#6b7280" fontSize={12} tickFormatter={formatValue} />
@@ -117,15 +113,13 @@ export function TrafficCharts({ data }) {
                     borderRadius: "6px",
                   }}
                 />
-                <Line
-                  type="monotone"
+                <Bar
                   dataKey="whatsbetter_me_booking"
-                  stroke="#ec4899"
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
+                  fill="#ec4899"
+                  radius={[4, 4, 0, 0]}
                   label={(props) => <BookingLabel {...props} />}
                 />
-              </LineChart>
+              </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
