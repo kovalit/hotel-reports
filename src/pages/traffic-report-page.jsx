@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchTrafficSummary, fetchTrafficHotels } from "../store/trafficSlice"
+import { fetchTrafficSummary, fetchTrafficHotels, fetchMonthlyTrafficData } from "../store/trafficSlice"
 import { DateRangePicker } from "../components/date-range-picker"
 import { TrafficSummary } from "../components/traffic-summary"
 import { TrafficHotelsTable } from "../components/traffic-hotels-table"
+import { TrafficCharts } from "../components/traffic-charts"
 
 export function TrafficReportPage() {
   const dispatch = useDispatch()
-  const { summary, hotels, loading, error } = useSelector((state) => state.traffic)
+  const { summary, hotels, monthlyData, loading, error } = useSelector((state) => state.traffic)
 
   const [startDate, setStartDate] = useState("2024-08-01")
   const [endDate, setEndDate] = useState("2024-12-31")
@@ -18,6 +19,7 @@ export function TrafficReportPage() {
     if (startDate && endDate) {
       dispatch(fetchTrafficSummary({ startDate, endDate }))
       dispatch(fetchTrafficHotels({ startDate, endDate }))
+      dispatch(fetchMonthlyTrafficData({ startDate, endDate }))
     }
   }, [dispatch, startDate, endDate])
 
@@ -52,6 +54,9 @@ export function TrafficReportPage() {
             <h2 className="text-xl font-semibold">Детализация по отелям</h2>
             <TrafficHotelsTable hotels={hotels} />
           </div>
+
+          {/* Monthly charts section */}
+          <TrafficCharts data={monthlyData} />
         </>
       )}
     </div>
