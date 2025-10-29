@@ -45,7 +45,7 @@ export function TrafficReportPage() {
       {/* Summary section */}
       {!loading && !error && (
         <>
-          <TrafficSummary summary={summary} />
+          <TrafficSummary summary={summary} hotels={hotels} />
 
           {/* Hotels table section */}
           <div className="space-y-4">
