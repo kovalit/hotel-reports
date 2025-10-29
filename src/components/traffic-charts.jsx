@@ -18,8 +18,12 @@ const formatLabelValue = (value) => {
 const TrafficCaptureLabel = (props) => {
   const { x, y, width, value, payload } = props
 
-  // Always show value, calculate conversion if data available
-  const conversion = payload?.total > 0 ? ((value / payload.total) * 100).toFixed(2) : "0.00"
+  console.log("[v0] TrafficCaptureLabel payload:", payload)
+  console.log("[v0] TrafficCaptureLabel value:", value)
+
+  // Calculate conversion: open_whatsbetter_me / total
+  const total = payload?.total || 0
+  const conversion = total > 0 ? ((value / total) * 100).toFixed(2) : "0.00"
 
   return (
     <g>
@@ -36,9 +40,12 @@ const TrafficCaptureLabel = (props) => {
 const BookingLabel = (props) => {
   const { x, y, width, value, payload } = props
 
-  // Always show value, calculate conversion if data available
-  const conversion =
-    payload?.open_whatsbetter_me > 0 ? ((value / payload.open_whatsbetter_me) * 100).toFixed(2) : "0.00"
+  console.log("[v0] BookingLabel payload:", payload)
+  console.log("[v0] BookingLabel value:", value)
+
+  // Calculate conversion: whatsbetter_me_booking / open_whatsbetter_me
+  const openWhatsbetter = payload?.open_whatsbetter_me || 0
+  const conversion = openWhatsbetter > 0 ? ((value / openWhatsbetter) * 100).toFixed(2) : "0.00"
 
   return (
     <g>
