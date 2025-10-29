@@ -18,20 +18,13 @@ const formatLabelValue = (value) => {
 const TrafficCaptureLabel = (props) => {
   const { x, y, width, value, payload } = props
 
-  console.log("[v0] TrafficCaptureLabel payload:", payload)
-  console.log("[v0] TrafficCaptureLabel value:", value)
-
-  // Calculate conversion: open_whatsbetter_me / total
-  const total = payload?.total || 0
-  const conversion = total > 0 ? ((value / total) * 100).toFixed(2) : "0.00"
-
   return (
     <g>
       <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
         {formatLabelValue(value)}
       </text>
       <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
-        {conversion}%
+        {payload.trafficConversion}%
       </text>
     </g>
   )
@@ -40,20 +33,13 @@ const TrafficCaptureLabel = (props) => {
 const BookingLabel = (props) => {
   const { x, y, width, value, payload } = props
 
-  console.log("[v0] BookingLabel payload:", payload)
-  console.log("[v0] BookingLabel value:", value)
-
-  // Calculate conversion: whatsbetter_me_booking / open_whatsbetter_me
-  const openWhatsbetter = payload?.open_whatsbetter_me || 0
-  const conversion = openWhatsbetter > 0 ? ((value / openWhatsbetter) * 100).toFixed(2) : "0.00"
-
   return (
     <g>
       <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
         {formatLabelValue(value)}
       </text>
       <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
-        {conversion}%
+        {payload.bookingConversion}%
       </text>
     </g>
   )

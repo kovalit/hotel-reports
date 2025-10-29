@@ -44,10 +44,18 @@ export const fetchMonthlyTrafficData = createAsyncThunk("traffic/fetchMonthly", 
     }
     const data = await response.json()
 
+    const trafficConversion = data.total > 0 ? ((data.open_whatsbetter_me / data.total) * 100).toFixed(2) : "0.00"
+    const bookingConversion =
+      data.open_whatsbetter_me > 0
+        ? ((data.whatsbetter_me_booking / data.open_whatsbetter_me) * 100).toFixed(2)
+        : "0.00"
+
     monthlyData.push({
       month: monthStart.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }),
       monthKey: `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, "0")}`,
       ...data,
+      trafficConversion: Number.parseFloat(trafficConversion),
+      bookingConversion: Number.parseFloat(bookingConversion),
     })
 
     current.setMonth(current.getMonth() + 1)
