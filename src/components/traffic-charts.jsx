@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from "recharts"
 
 const formatValue = (value) => {
   if (value >= 1000) {
@@ -15,31 +15,15 @@ const formatLabelValue = (value) => {
   return Math.round(value).toLocaleString()
 }
 
-const TrafficCaptureLabel = (props) => {
-  const { x, y, width, value, payload } = props
-
+const CustomBarLabel = (props) => {
+  const { x, y, width, value, conversion } = props
   return (
     <g>
       <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
         {formatLabelValue(value)}
       </text>
       <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
-        {payload.trafficConversion}%
-      </text>
-    </g>
-  )
-}
-
-const BookingLabel = (props) => {
-  const { x, y, width, value, payload } = props
-
-  return (
-    <g>
-      <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
-        {formatLabelValue(value)}
-      </text>
-      <text x={x + width / 2} y={y - 10} fill="#6b7280" textAnchor="middle" fontSize={12}>
-        {payload.bookingConversion}%
+        {conversion}%
       </text>
     </g>
   )
@@ -77,12 +61,14 @@ export function TrafficCharts({ data }) {
                     borderRadius: "6px",
                   }}
                 />
-                <Bar
-                  dataKey="open_whatsbetter_me"
-                  fill="#3b82f6"
-                  radius={[4, 4, 0, 0]}
-                  label={(props) => <TrafficCaptureLabel {...props} />}
-                />
+                <Bar dataKey="open_whatsbetter_me" fill="#3b82f6" radius={[4, 4, 0, 0]}>
+                  <LabelList
+                    dataKey="open_whatsbetter_me"
+                    content={(props) => (
+                      <CustomBarLabel {...props} conversion={filteredData[props.index]?.trafficConversion || 0} />
+                    )}
+                  />
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -105,12 +91,14 @@ export function TrafficCharts({ data }) {
                     borderRadius: "6px",
                   }}
                 />
-                <Bar
-                  dataKey="whatsbetter_me_booking"
-                  fill="#ec4899"
-                  radius={[4, 4, 0, 0]}
-                  label={(props) => <BookingLabel {...props} />}
-                />
+                <Bar dataKey="whatsbetter_me_booking" fill="#ec4899" radius={[4, 4, 0, 0]}>
+                  <LabelList
+                    dataKey="whatsbetter_me_booking"
+                    content={(props) => (
+                      <CustomBarLabel {...props} conversion={filteredData[props.index]?.bookingConversion || 0} />
+                    )}
+                  />
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
