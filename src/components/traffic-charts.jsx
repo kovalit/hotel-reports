@@ -15,13 +15,12 @@ const formatLabelValue = (value) => {
   return Math.round(value).toLocaleString()
 }
 
-// Custom label for first chart showing value and conversion to total
 const TrafficCaptureLabel = (props) => {
   const { x, y, width, value, payload } = props
-  if (!payload || !payload.total) {
-    return null
-  }
-  const conversion = payload.total > 0 ? ((value / payload.total) * 100).toFixed(2) : 0
+
+  // Always show value, calculate conversion if data available
+  const conversion = payload?.total > 0 ? ((value / payload.total) * 100).toFixed(2) : "0.00"
+
   return (
     <g>
       <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
@@ -34,13 +33,13 @@ const TrafficCaptureLabel = (props) => {
   )
 }
 
-// Custom label for second chart showing value and conversion to open_whatsbetter_me
 const BookingLabel = (props) => {
   const { x, y, width, value, payload } = props
-  if (!payload || !payload.open_whatsbetter_me) {
-    return null
-  }
-  const conversion = payload.open_whatsbetter_me > 0 ? ((value / payload.open_whatsbetter_me) * 100).toFixed(2) : 0
+
+  // Always show value, calculate conversion if data available
+  const conversion =
+    payload?.open_whatsbetter_me > 0 ? ((value / payload.open_whatsbetter_me) * 100).toFixed(2) : "0.00"
+
   return (
     <g>
       <text x={x + width / 2} y={y - 25} fill="#1f2937" textAnchor="middle" fontSize={16} fontWeight="600">
@@ -60,7 +59,7 @@ export function TrafficCharts({ data }) {
 
   const filteredData = data.filter((item) => {
     const [year, month] = item.monthKey.split("-")
-    return Number.parseInt(month) >= 8 // Only include August (8) through December (12)
+    return Number.parseInt(month) >= 8
   })
 
   return (
