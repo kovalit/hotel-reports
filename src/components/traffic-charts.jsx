@@ -18,6 +18,10 @@ const formatLabelValue = (value) => {
 // Custom label for first chart showing value and conversion to total
 const TrafficCaptureLabel = (props) => {
   const { x, y, value, payload } = props
+  // Safety check for undefined payload
+  if (!payload || !payload.total) {
+    return null
+  }
   const conversion = payload.total > 0 ? ((value / payload.total) * 100).toFixed(2) : 0
   return (
     <g>
@@ -34,6 +38,10 @@ const TrafficCaptureLabel = (props) => {
 // Custom label for second chart showing value and conversion to open_whatsbetter_me
 const BookingLabel = (props) => {
   const { x, y, value, payload } = props
+  // Safety check for undefined payload
+  if (!payload || !payload.open_whatsbetter_me) {
+    return null
+  }
   const conversion = payload.open_whatsbetter_me > 0 ? ((value / payload.open_whatsbetter_me) * 100).toFixed(2) : 0
   return (
     <g>
@@ -85,7 +93,7 @@ export function TrafficCharts({ data }) {
                   stroke="#3b82f6"
                   strokeWidth={2}
                   dot={{ r: 4 }}
-                  label={<TrafficCaptureLabel />}
+                  label={(props) => <TrafficCaptureLabel {...props} />}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -115,7 +123,7 @@ export function TrafficCharts({ data }) {
                   stroke="#ec4899"
                   strokeWidth={2}
                   dot={{ r: 4 }}
-                  label={<BookingLabel />}
+                  label={(props) => <BookingLabel {...props} />}
                 />
               </LineChart>
             </ResponsiveContainer>
