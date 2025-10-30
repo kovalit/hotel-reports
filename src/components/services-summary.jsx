@@ -7,13 +7,13 @@ export function ServicesSummary({ data }) {
   const metrics = [
     {
       title: "Общая сумма бронирований",
-      value: `₽${data.amount.toLocaleString()}`,
+      value: `${data.amount.toLocaleString()} ₽`,
       icon: DollarSign,
       color: "text-purple-600",
     },
     {
       title: "Общая стоимость услуг",
-      value: `₽${data.amount_services.toLocaleString()}`,
+      value: `${data.amount_services.toLocaleString()} ₽`,
       icon: Sparkles,
       color: "text-pink-600",
     },
