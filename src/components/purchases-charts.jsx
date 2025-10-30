@@ -52,7 +52,7 @@ export function PurchasesCharts({ data }) {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={filteredData} margin={{ top: 40, right: 20, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} />
                 <YAxis tickFormatter={formatValue} />
                 <Bar dataKey="clients_count" fill="#3b82f6" radius={[4, 4, 0, 0]}>
                   <LabelList
@@ -76,7 +76,7 @@ export function PurchasesCharts({ data }) {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={filteredData} margin={{ top: 40, right: 20, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} />
                 <YAxis tickFormatter={formatValue} />
                 <Bar dataKey="purchases_count" fill="#8b5cf6" radius={[4, 4, 0, 0]}>
                   <LabelList
@@ -102,9 +102,9 @@ export function PurchasesCharts({ data }) {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={filteredData} margin={{ top: 40, right: 20, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} />
                 <YAxis tickFormatter={formatValue} />
-                <Bar dataKey="commission" fill="hsl(var(--chart-3))" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="commission" fill="#22c55e" radius={[4, 4, 0, 0]}>
                   <LabelList
                     dataKey="commission"
                     content={(props) => (

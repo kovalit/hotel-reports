@@ -4,7 +4,7 @@ import { useState, useMemo } from "react"
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
 
 export function PurchasesCategoryTable({ data }) {
-  const [sortConfig, setSortConfig] = useState({ key: "amount_price", direction: "desc" })
+  const [sortConfig, setSortConfig] = useState({ key: "commission", direction: "desc" })
 
   const sortedData = useMemo(() => {
     if (!data || data.length === 0) return []
@@ -33,13 +33,6 @@ export function PurchasesCategoryTable({ data }) {
     return sorted
   }, [data, sortConfig])
 
-  const handleSort = (key) => {
-    setSortConfig((prev) => ({
-      key,
-      direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc",
-    }))
-  }
-
   const totals = useMemo(() => {
     if (!data || data.length === 0) return null
 
@@ -53,6 +46,14 @@ export function PurchasesCategoryTable({ data }) {
       { clients_count: 0, purchases_count: 0, amount_price: 0, commission: 0 },
     )
   }, [data])
+
+  const handleSort = (columnKey) => {
+    let direction = "asc"
+    if (sortConfig.key === columnKey && sortConfig.direction === "asc") {
+      direction = "desc"
+    }
+    setSortConfig({ key: columnKey, direction })
+  }
 
   if (!data || data.length === 0) {
     return <div className="text-muted-foreground">Нет данных для отображения</div>
@@ -114,7 +115,7 @@ export function PurchasesCategoryTable({ data }) {
                   <td className="px-4 py-3 text-sm">{item.purchases_count?.toLocaleString("ru-RU")}</td>
                   <td className="px-4 py-3 text-sm">{Math.round(averageCheck).toLocaleString("ru-RU")} ₽</td>
                   <td className="px-4 py-3 text-sm">{item.amount_price?.toLocaleString("ru-RU")} ₽</td>
-                  <td className="px-4 py-3 text-sm font-bold">{commission.toLocaleString("ru-RU")} ₽</td>
+                  <td className="px-4 py-3 text-sm font-bold">{Math.round(commission).toLocaleString("ru-RU")} ₽</td>
                 </tr>
               )
             })}
@@ -129,7 +130,7 @@ export function PurchasesCategoryTable({ data }) {
                 <td className="px-4 py-3 text-sm">{totals.purchases_count.toLocaleString("ru-RU")}</td>
                 <td className="px-4 py-3 text-sm">—</td>
                 <td className="px-4 py-3 text-sm">{totals.amount_price.toLocaleString("ru-RU")} ₽</td>
-                <td className="px-4 py-3 text-sm">{totals.commission.toLocaleString("ru-RU")} ₽</td>
+                <td className="px-4 py-3 text-sm">{Math.round(totals.commission).toLocaleString("ru-RU")} ₽</td>
               </tr>
             </tfoot>
           )}
