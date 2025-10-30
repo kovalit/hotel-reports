@@ -51,7 +51,7 @@ export function TrafficSummary({ summary, hotels }) {
         <CardContent>
           <div className="text-2xl font-bold">{whatsbetterBooking.toLocaleString("ru-RU")}</div>
           <div className="mt-1 space-y-0.5">
-            <p className="text-xs text-muted-foreground">Конверсия на сайте: {siteConversion}%</p>
+            <p className="text-xs text-muted-foreground">Конверсия с сайта: {siteConversion}%</p>
             <p className="text-xs text-muted-foreground">Конверсия в whatsbetter.me: {whatsbetterConversion}%</p>
           </div>
         </CardContent>
