@@ -27,7 +27,8 @@ export function TrafficSummary({ summary, hotels }) {
   const whatsbetterBooking = summary.whatsbetter_me_booking || 0
 
   const openConversion = total > 0 ? ((openWhatsbetter / total) * 100).toFixed(2) : "0.00"
-  const bookingConversion = total > 0 ? ((whatsbetterBooking / total) * 100).toFixed(2) : "0.00"
+  const siteConversion = total > 0 ? ((whatsbetterBooking / total) * 100).toFixed(2) : "0.00"
+  const whatsbetterConversion = openWhatsbetter > 0 ? ((openWhatsbetter / whatsbetterBooking) * 100).toFixed(2) : "0.00"
 
   return (
     <div className="grid gap-4 md:grid-cols-3">
@@ -49,7 +50,10 @@ export function TrafficSummary({ summary, hotels }) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{whatsbetterBooking.toLocaleString("ru-RU")}</div>
-          <p className="text-xs text-muted-foreground mt-1">Конверсия: {bookingConversion}%</p>
+          <div className="mt-1 space-y-0.5">
+            <p className="text-xs text-muted-foreground">Конверсия на сайте: {siteConversion}%</p>
+            <p className="text-xs text-muted-foreground">Конверсия в whatsbetter.me: {whatsbetterConversion}%</p>
+          </div>
         </CardContent>
       </Card>
 
