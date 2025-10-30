@@ -2,21 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 // Room types with their daily availability
 export const ROOMS = [
-  { countAvailable: 28, id: "916912424844099585", label: "Делюкс с видом в атриум" },
-  { countAvailable: 52, id: "916912424844132353", label: "Делюкс с видом на город с одной большой кроватью" },
-  { countAvailable: 14, id: "916912424844165121", label: "Делюкс с видом на город с двумя раздельными кроватями" },
-  { countAvailable: 8, id: "916912424844230657", label: "Полулюкс" },
-  { countAvailable: 4, id: "916912424844263425", label: "Исторический полулюкс + делюкс с видом на город" },
-  { countAvailable: 4, id: "916912424844296193", label: "Полулюкс с террасой" },
+  { countAvailable: 14, id: "916912424844099585", label: "Делюкс с видом в атриум" },
+  { countAvailable: 26, id: "916912424844132353", label: "Делюкс с видом на город с одной большой кроватью" },
+  { countAvailable: 7, id: "916912424844165121", label: "Делюкс с видом на город с двумя раздельными кроватями" },
+  { countAvailable: 4, id: "916912424844230657", label: "Полулюкс" },
+  { countAvailable: 2, id: "916912424844263425", label: "Исторический полулюкс + делюкс с видом на город" },
+  { countAvailable: 3, id: "916912424844296193", label: "Полулюкс с террасой" },
   { countAvailable: 4, id: "916912424844361729", label: "Премиум полулюкс" },
-  { countAvailable: 4, id: "916912424844394497", label: "Исторический полулюкс" },
-  { countAvailable: 16, id: "916912424844492801", label: "Классический люкс" },
-  { countAvailable: 6, id: "916912424844525569", label: "Люкс с террасой" },
-  { countAvailable: 6, id: "916912424844656641", label: "Представительский люкс с террасой" },
-  { countAvailable: 8, id: "916912424844722177", label: "Люкс + делюкс с видом на город" },
-  { countAvailable: 4, id: "916912424844787713", label: "Исторический люкс" },
-  { countAvailable: 2, id: "916912424844820481", label: "Исторический люкс Wawelberg" },
-  { countAvailable: 2, id: "982293271282384897", label: "Музыкальный исторический люкс" },
+  { countAvailable: 2, id: "916912424844394497", label: "Исторический полулюкс" },
+  { countAvailable: 8, id: "916912424844492801", label: "Классический люкс" },
+  { countAvailable: 3, id: "916912424844525569", label: "Люкс с террасой" },
+  { countAvailable: 3, id: "916912424844656641", label: "Представительский люкс с террасой" },
+  { countAvailable: 4, id: "916912424844722177", label: "Люкс + делюкс с видом на город" },
+  { countAvailable: 2, id: "916912424844787713", label: "Исторический люкс" },
+  { countAvailable: 1, id: "916912424844820481", label: "Исторический люкс Wawelberg" },
+  { countAvailable: 1, id: "982293271282384897", label: "Музыкальный исторический люкс" },
 ]
 
 // Fetch room statistics
