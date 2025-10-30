@@ -23,14 +23,14 @@ export function RoomOccupancyTable({ statistics, startDate, endDate, loading }) 
 
     return statistics
       .map((stat) => {
-        const room = ROOMS.find((r) => r.id === stat.room_id)
+        const room = ROOMS.find((r) => r.id === stat.id)
         if (!room) return null
 
         const maxOccupancy = room.countAvailable * daysBetween
         const occupancy = maxOccupancy > 0 ? (stat.nightsCount / maxOccupancy) * 100 : 0
 
         return {
-          id: stat.room_id,
+          id: stat.id,
           label: stat.label || room.label,
           nightsCount: stat.nightsCount || 0,
           amount_price: stat.amount_price || 0,
