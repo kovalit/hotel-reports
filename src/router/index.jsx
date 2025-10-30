@@ -4,6 +4,7 @@ import { IncomeReportPage } from "../pages/income-report-page"
 import { ServicesReportPage } from "../pages/services-report-page"
 import { TrafficReportPage } from "../pages/traffic-report-page"
 import { PurchasesReportPage } from "../pages/purchases-report-page"
+import { RoomOccupancyPage } from "../pages/room-occupancy-page"
 import { Layout } from "../components/layout"
 
 export const router = createBrowserRouter([
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "purchases-report",
         element: <PurchasesReportPage />,
+      },
+      {
+        path: "room-occupancy",
+        element: <RoomOccupancyPage />,
       },
       {
         path: "income-report",
