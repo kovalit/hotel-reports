@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom"
-import { BarChart3, FileText, Users, Calendar, ExternalLink } from "lucide-react"
+import { BarChart3, FileText, Users, Calendar, ExternalLink, ShoppingCart } from "lucide-react"
 
 const menuItems = [
   { id: "booking-report", label: "Бронирования", icon: BarChart3, path: "/booking-report" },
   { id: "services-report", label: "Услуги", icon: FileText, path: "/services-report" },
   { id: "traffic-report", label: "Уходящий трафик", icon: ExternalLink, path: "/traffic-report" },
+  { id: "purchases-report", label: "Покупки гостей", icon: ShoppingCart, path: "/purchases-report" },
   { id: "guest-report", label: "Гости", icon: Users, path: "#" },
   { id: "occupancy-report", label: "Заполняемость", icon: Calendar, path: "#" },
 ]
