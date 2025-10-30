@@ -28,7 +28,7 @@ export function TrafficSummary({ summary, hotels }) {
 
   const openConversion = total > 0 ? ((openWhatsbetter / total) * 100).toFixed(2) : "0.00"
   const siteConversion = total > 0 ? ((whatsbetterBooking / total) * 100).toFixed(2) : "0.00"
-  const whatsbetterConversion = openWhatsbetter > 0 ? ((openWhatsbetter / whatsbetterBooking) * 100).toFixed(2) : "0.00"
+  const whatsbetterConversion = openWhatsbetter > 0 ? ((whatsbetterBooking / openWhatsbetter) * 100).toFixed(2) : "0.00"
 
   return (
     <div className="grid gap-4 md:grid-cols-3">
