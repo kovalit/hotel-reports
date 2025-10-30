@@ -28,10 +28,65 @@ export const fetchRoomStatistics = createAsyncThunk("rooms/fetchStatistics", asy
   return data
 })
 
+// Fetch monthly room statistics
+export const fetchMonthlyRoomStatistics = createAsyncThunk(
+  "rooms/fetchMonthlyStatistics",
+  async ({ startDate, endDate }) => {
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+    const monthlyData = []
+
+    const current = new Date(start.getFullYear(), start.getMonth(), 1)
+
+    while (current <= end) {
+      const monthStart = new Date(current.getFullYear(), current.getMonth(), 1)
+      const monthEnd = new Date(current.getFullYear(), current.getMonth() + 1, 0)
+
+      const actualStart = monthStart < start ? start : monthStart
+      const actualEnd = monthEnd > end ? end : monthEnd
+
+      const startStr = actualStart.toISOString().split("T")[0]
+      const endStr = actualEnd.toISOString().split("T")[0]
+
+      const response = await fetch(
+        `https://visits-api.whatsbetter.me/api/rooms-statistics?startDate=${startStr}&endDate=${endStr}`,
+      )
+      const data = await response.json()
+
+      // Calculate days in this month period
+      const diffTime = Math.abs(actualEnd - actualStart)
+      const daysInPeriod = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1
+
+      // Calculate total nights from statistics
+      const totalNights = data.reduce((sum, stat) => sum + (stat.nightsCount || 0), 0)
+
+      // Calculate maximum occupancy for this month
+      const totalRooms = ROOMS.reduce((sum, room) => sum + room.countAvailable, 0)
+      const maxOccupancy = totalRooms * daysInPeriod
+
+      // Calculate occupancy percentage
+      const occupancyPercentage = maxOccupancy > 0 ? (totalNights / maxOccupancy) * 100 : 0
+
+      monthlyData.push({
+        month: monthStart.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }),
+        monthKey: `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, "0")}`,
+        occupancyPercentage,
+        totalNights,
+        maxOccupancy,
+      })
+
+      current.setMonth(current.getMonth() + 1)
+    }
+
+    return monthlyData
+  },
+)
+
 const roomsSlice = createSlice({
   name: "rooms",
   initialState: {
     statistics: [],
+    monthlyStatistics: [],
     loading: false,
     error: null,
   },
@@ -47,6 +102,18 @@ const roomsSlice = createSlice({
         state.statistics = action.payload
       })
       .addCase(fetchRoomStatistics.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      })
+      .addCase(fetchMonthlyRoomStatistics.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchMonthlyRoomStatistics.fulfilled, (state, action) => {
+        state.loading = false
+        state.monthlyStatistics = action.payload
+      })
+      .addCase(fetchMonthlyRoomStatistics.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message
       })

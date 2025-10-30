@@ -2,14 +2,15 @@
 
 import { useEffect, useState, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchRoomStatistics, ROOMS } from "../store/roomsSlice"
+import { fetchRoomStatistics, fetchMonthlyRoomStatistics, ROOMS } from "../store/roomsSlice"
 import { DateRangePicker } from "../components/date-range-picker"
 import { RoomOccupancySummary } from "../components/room-occupancy-summary"
 import { RoomOccupancyTable } from "../components/room-occupancy-table"
+import { RoomOccupancyChart } from "../components/room-occupancy-chart"
 
 export function RoomOccupancyPage() {
   const dispatch = useDispatch()
-  const { statistics, loading } = useSelector((state) => state.rooms)
+  const { statistics, monthlyStatistics, loading } = useSelector((state) => state.rooms)
 
   const [startDate, setStartDate] = useState("2024-08-01")
   const [endDate, setEndDate] = useState("2024-12-31")
@@ -45,6 +46,7 @@ export function RoomOccupancyPage() {
   useEffect(() => {
     if (startDate && endDate) {
       dispatch(fetchRoomStatistics({ startDate, endDate }))
+      dispatch(fetchMonthlyRoomStatistics({ startDate, endDate }))
     }
   }, [dispatch, startDate, endDate])
 
@@ -63,6 +65,10 @@ export function RoomOccupancyPage() {
       <RoomOccupancySummary occupancyPercentage={occupancyPercentage} loading={loading} />
 
       <RoomOccupancyTable statistics={statistics} startDate={startDate} endDate={endDate} loading={loading} />
+
+      <div className="mt-6">
+        <RoomOccupancyChart data={monthlyStatistics} />
+      </div>
     </div>
   )
 }
