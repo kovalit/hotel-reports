@@ -32,6 +32,7 @@ export function RoomOccupancyTable({ statistics, startDate, endDate, loading }) 
         return {
           id: stat.id,
           label: stat.label || room.label,
+          countAvailable: room.countAvailable,
           nightsCount: stat.nightsCount || 0,
           amount_price: stat.amount_price || 0,
           occupancy,
@@ -98,53 +99,57 @@ export function RoomOccupancyTable({ statistics, startDate, endDate, loading }) 
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border overflow-hidden">
-      <div className="px-6 py-4 border-b border-border">
-        <h3 className="text-lg font-semibold">Заполняемость по номерам</h3>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-muted/50">
-            <tr className="border-b border-border">
-              <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
-                <SortButton columnKey="id">№</SortButton>
-              </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
-                <SortButton columnKey="label">Название номера</SortButton>
-              </th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
-                <SortButton columnKey="nightsCount">Количество ночей</SortButton>
-              </th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
-                <SortButton columnKey="amount_price">Общая стоимость</SortButton>
-              </th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
-                <SortButton columnKey="occupancy">Заполняемость</SortButton>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white">
-            {sortedData.map((row, index) => (
-              <tr key={row.id} className="border-b border-border hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3 text-sm">{index + 1}</td>
-                <td className="px-4 py-3 text-sm">{row.label}</td>
-                <td className="px-4 py-3 text-sm text-right">{row.nightsCount.toLocaleString("ru-RU")}</td>
-                <td className="px-4 py-3 text-sm text-right">{row.amount_price.toLocaleString("ru-RU")} ₽</td>
-                <td className="px-4 py-3 text-sm text-right font-medium">{row.occupancy.toFixed(2)}%</td>
+    <div>
+      <h3 className="text-lg font-semibold mb-4">Заполняемость по номерам</h3>
+      <div className="bg-white rounded-lg border border-border overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-muted/50">
+              <tr className="border-b border-border">
+                <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="id">№</SortButton>
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="label">Название номера</SortButton>
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="countAvailable">Всего номеров</SortButton>
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="nightsCount">Количество ночей</SortButton>
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="amount_price">Общая стоимость</SortButton>
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+                  <SortButton columnKey="occupancy">Заполняемость</SortButton>
+                </th>
               </tr>
-            ))}
-          </tbody>
-          <tfoot className="bg-muted/50 font-semibold">
-            <tr className="border-t-2 border-border">
-              <td className="px-4 py-3 text-sm" colSpan="2">
-                Итого
-              </td>
-              <td className="px-4 py-3 text-sm text-right">{totals.nightsCount.toLocaleString("ru-RU")}</td>
-              <td className="px-4 py-3 text-sm text-right">{totals.amount_price.toLocaleString("ru-RU")} ₽</td>
-              <td className="px-4 py-3 text-sm text-right"></td>
-            </tr>
-          </tfoot>
-        </table>
+            </thead>
+            <tbody className="bg-white">
+              {sortedData.map((row, index) => (
+                <tr key={row.id} className="border-b border-border hover:bg-muted/30 transition-colors">
+                  <td className="px-4 py-3 text-sm">{index + 1}</td>
+                  <td className="px-4 py-3 text-sm">{row.label}</td>
+                  <td className="px-4 py-3 text-sm text-right">{row.countAvailable}</td>
+                  <td className="px-4 py-3 text-sm text-right">{row.nightsCount.toLocaleString("ru-RU")}</td>
+                  <td className="px-4 py-3 text-sm text-right">{row.amount_price.toLocaleString("ru-RU")} ₽</td>
+                  <td className="px-4 py-3 text-sm text-right font-medium">{row.occupancy.toFixed(2)}%</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot className="bg-muted/50 font-semibold">
+              <tr className="border-t-2 border-border">
+                <td className="px-4 py-3 text-sm" colSpan="3">
+                  Итого
+                </td>
+                <td className="px-4 py-3 text-sm text-right">{totals.nightsCount.toLocaleString("ru-RU")}</td>
+                <td className="px-4 py-3 text-sm text-right">{totals.amount_price.toLocaleString("ru-RU")} ₽</td>
+                <td className="px-4 py-3 text-sm text-right"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   )

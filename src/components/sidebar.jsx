@@ -6,7 +6,7 @@ const menuItems = [
   { id: "services-report", label: "Услуги", icon: FileText, path: "/services-report" },
   { id: "traffic-report", label: "Уходящий трафик", icon: ExternalLink, path: "/traffic-report" },
   { id: "purchases-report", label: "Покупки гостей", icon: ShoppingCart, path: "/purchases-report" },
-  { id: "room-occupancy", label: "Заполняемость номеров", icon: Calendar, path: "/room-occupancy" },
+  { id: "room-occupancy", label: "Заполняемость", icon: Calendar, path: "/room-occupancy" },
   { id: "guest-report", label: "Гости", icon: Users, path: "#" },
 ]
 

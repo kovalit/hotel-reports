@@ -6,6 +6,7 @@ export function RoomOccupancySummary({ occupancyPercentage, loading }) {
       <Card>
         <CardHeader>
           <CardTitle className="text-base font-medium">Общая заполняемость</CardTitle>
+          <p className="text-xs text-muted-foreground mt-1">При бронировании на сайте</p>
         </CardHeader>
         <CardContent>
           {loading ? (
