@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
 
 export function PurchasesCategoryTable({ data }) {
   const [sortConfig, setSortConfig] = useState({ key: "amount_price", direction: "desc" })
@@ -58,15 +58,20 @@ export function PurchasesCategoryTable({ data }) {
     return <div className="text-muted-foreground">Нет данных для отображения</div>
   }
 
-  const SortButton = ({ columnKey, children }) => (
-    <button
-      onClick={() => handleSort(columnKey)}
-      className="flex items-center gap-1 hover:text-foreground transition-colors"
-    >
-      {children}
-      <ArrowUpDown className="h-3 w-3" />
-    </button>
-  )
+  const SortButton = ({ columnKey, children }) => {
+    const isActive = sortConfig.key === columnKey
+    const Icon = isActive ? (sortConfig.direction === "asc" ? ArrowUp : ArrowDown) : ArrowUpDown
+
+    return (
+      <button
+        onClick={() => handleSort(columnKey)}
+        className="flex items-center gap-1 hover:text-foreground transition-colors"
+      >
+        {children}
+        <Icon className="h-3 w-3" />
+      </button>
+    )
+  }
 
   return (
     <div className="space-y-4">
@@ -109,7 +114,7 @@ export function PurchasesCategoryTable({ data }) {
                   <td className="px-4 py-3 text-sm">{item.purchases_count?.toLocaleString("ru-RU")}</td>
                   <td className="px-4 py-3 text-sm">{Math.round(averageCheck).toLocaleString("ru-RU")} ₽</td>
                   <td className="px-4 py-3 text-sm">{item.amount_price?.toLocaleString("ru-RU")} ₽</td>
-                  <td className="px-4 py-3 text-sm">{commission.toLocaleString("ru-RU")} ₽</td>
+                  <td className="px-4 py-3 text-sm font-bold">{commission.toLocaleString("ru-RU")} ₽</td>
                 </tr>
               )
             })}

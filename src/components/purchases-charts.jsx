@@ -42,7 +42,7 @@ export function PurchasesCharts({ data }) {
     <div className="space-y-6">
       <h2 className="text-xl font-semibold">Динамика по месяцам</h2>
 
-      <div className="grid gap-6 md:grid-cols-1">
+      <div className="grid gap-6 md:grid-cols-2">
         {/* Clients Chart */}
         <Card>
           <CardHeader>
@@ -54,7 +54,7 @@ export function PurchasesCharts({ data }) {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={formatValue} />
-                <Bar dataKey="clients_count" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="clients_count" fill="#3b82f6" radius={[4, 4, 0, 0]}>
                   <LabelList
                     dataKey="clients_count"
                     content={(props) => (
@@ -78,7 +78,7 @@ export function PurchasesCharts({ data }) {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={formatValue} />
-                <Bar dataKey="purchases_count" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="purchases_count" fill="#8b5cf6" radius={[4, 4, 0, 0]}>
                   <LabelList
                     dataKey="purchases_count"
                     content={(props) => (
@@ -90,11 +90,13 @@ export function PurchasesCharts({ data }) {
             </ResponsiveContainer>
           </CardContent>
         </Card>
+      </div>
 
+      <div className="grid gap-6 md:grid-cols-1">
         {/* Commission Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Вознаграждение</CardTitle>
+            <CardTitle className="text-base">Вознаграждение, ₽</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
