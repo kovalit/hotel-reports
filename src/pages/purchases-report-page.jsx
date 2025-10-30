@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchPurchasesSummary, fetchMonthlyPurchasesData, fetchPurchasesByCategory } from "../store/purchasesSlice"
+import {
+  fetchPurchasesSummary,
+  fetchMonthlyPurchasesData,
+  fetchPurchasesByCategory,
+  fetchBookingFunnelSummary,
+  fetchWhatsbetterSummary,
+} from "../store/purchasesSlice"
 import { DateRangePicker } from "../components/date-range-picker"
 import { PurchasesSummary } from "../components/purchases-summary"
 import { PurchasesCharts } from "../components/purchases-charts"
@@ -10,7 +16,9 @@ import { PurchasesCategoryTable } from "../components/purchases-category-table"
 
 export function PurchasesReportPage() {
   const dispatch = useDispatch()
-  const { summary, monthlyData, categoryData, loading } = useSelector((state) => state.purchases)
+  const { summary, monthlyData, categoryData, bookingFunnelData, whatsbetterData, loading } = useSelector(
+    (state) => state.purchases,
+  )
 
   const [startDate, setStartDate] = useState("2024-08-01")
   const [endDate, setEndDate] = useState("2024-12-31")
@@ -20,6 +28,8 @@ export function PurchasesReportPage() {
       dispatch(fetchPurchasesSummary({ startDate, endDate }))
       dispatch(fetchMonthlyPurchasesData({ startDate, endDate }))
       dispatch(fetchPurchasesByCategory({ startDate, endDate }))
+      dispatch(fetchBookingFunnelSummary({ startDate, endDate }))
+      dispatch(fetchWhatsbetterSummary({ startDate, endDate }))
     }
   }, [dispatch, startDate, endDate])
 
@@ -39,7 +49,7 @@ export function PurchasesReportPage() {
       {loading && <div className="text-muted-foreground">Загрузка данных...</div>}
 
       {/* Summary Section */}
-      <PurchasesSummary summary={summary} />
+      <PurchasesSummary summary={summary} bookingFunnelData={bookingFunnelData} whatsbetterData={whatsbetterData} />
 
       {/* Monthly Charts */}
       <PurchasesCharts data={monthlyData} />

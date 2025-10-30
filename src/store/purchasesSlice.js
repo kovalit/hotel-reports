@@ -80,12 +80,32 @@ export const fetchPurchasesByCategory = createAsyncThunk(
   },
 )
 
+export const fetchBookingFunnelSummary = createAsyncThunk(
+  "purchases/fetchBookingFunnel",
+  async ({ startDate, endDate }) => {
+    const response = await fetch(`${API_BASE_URL}/booking-funnel-summary?startDate=${startDate}&endDate=${endDate}`)
+    const data = await response.json()
+    return data
+  },
+)
+
+export const fetchWhatsbetterSummary = createAsyncThunk(
+  "purchases/fetchWhatsbetterSummary",
+  async ({ startDate, endDate }) => {
+    const response = await fetch(`${API_BASE_URL}/whatsbetter-summary?startDate=${startDate}&endDate=${endDate}`)
+    const data = await response.json()
+    return data
+  },
+)
+
 const purchasesSlice = createSlice({
   name: "purchases",
   initialState: {
     summary: null,
     monthlyData: [],
     categoryData: [],
+    bookingFunnelData: null,
+    whatsbetterData: null,
     loading: false,
     error: null,
   },
@@ -125,6 +145,28 @@ const purchasesSlice = createSlice({
         state.categoryData = action.payload
       })
       .addCase(fetchPurchasesByCategory.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      })
+      .addCase(fetchBookingFunnelSummary.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(fetchBookingFunnelSummary.fulfilled, (state, action) => {
+        state.loading = false
+        state.bookingFunnelData = action.payload
+      })
+      .addCase(fetchBookingFunnelSummary.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      })
+      .addCase(fetchWhatsbetterSummary.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(fetchWhatsbetterSummary.fulfilled, (state, action) => {
+        state.loading = false
+        state.whatsbetterData = action.payload
+      })
+      .addCase(fetchWhatsbetterSummary.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message
       })
