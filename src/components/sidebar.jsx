@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { BarChart3, FileText, Users, Calendar, ExternalLink, ShoppingCart } from "lucide-react"
+import { BarChart3, FileText, Users, Calendar, ExternalLink, ShoppingCart, DollarSign } from "lucide-react"
 
 const menuItems = [
   { id: "booking-report", label: "Бронирования", icon: BarChart3, path: "/booking-report" },
@@ -7,6 +7,7 @@ const menuItems = [
   { id: "traffic-report", label: "Уходящий трафик", icon: ExternalLink, path: "/traffic-report" },
   { id: "purchases-report", label: "Покупки гостей", icon: ShoppingCart, path: "/purchases-report" },
   { id: "room-occupancy", label: "Заполняемость", icon: Calendar, path: "/room-occupancy" },
+  { id: "revenue", label: "Доходы", icon: DollarSign, path: "/revenue" },
   { id: "guest-report", label: "Гости", icon: Users, path: "#" },
 ]
 
