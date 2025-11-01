@@ -56,13 +56,15 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
                 {startDate ? formatDate(startDate) : "Выберите дату начала"}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="end">
-              <DateCalendar
-                value={startDate ? dayjs(startDate) : null}
-                onChange={handleStartDateSelect}
-                defaultValue={startDate ? dayjs(startDate) : dayjs()}
-              />
-            </PopoverContent>
+            {startOpen && (
+              <PopoverContent className="w-auto p-0" align="end">
+                <DateCalendar
+                  value={startDate ? dayjs(startDate) : null}
+                  onChange={handleStartDateSelect}
+                  defaultValue={startDate ? dayjs(startDate) : dayjs()}
+                />
+              </PopoverContent>
+            )}
           </Popover>
 
           <span className="text-muted-foreground">до</span>
@@ -74,13 +76,15 @@ export function DateRangePicker({ startDate, endDate, onStartDateChange, onEndDa
                 {endDate ? formatDate(endDate) : "Выберите дату окончания"}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="end">
-              <DateCalendar
-                value={endDate ? dayjs(endDate) : null}
-                onChange={handleEndDateSelect}
-                defaultValue={endDate ? dayjs(endDate) : dayjs()}
-              />
-            </PopoverContent>
+            {endOpen && (
+              <PopoverContent className="w-auto p-0" align="end">
+                <DateCalendar
+                  value={endDate ? dayjs(endDate) : null}
+                  onChange={handleEndDateSelect}
+                  defaultValue={endDate ? dayjs(endDate) : dayjs()}
+                />
+              </PopoverContent>
+            )}
           </Popover>
         </div>
       </div>
