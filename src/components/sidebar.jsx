@@ -8,7 +8,7 @@ const menuItems = [
   { id: "purchases-report", label: "Покупки гостей", icon: ShoppingCart, path: "/purchases-report" },
   { id: "room-occupancy", label: "Заполняемость", icon: Calendar, path: "/room-occupancy" },
   { id: "revenue", label: "Доходы", icon: DollarSign, path: "/revenue" },
-  { id: "guest-report", label: "Гости", icon: Users, path: "#" },
+  // { id: "guest-report", label: "Гости", icon: Users, path: "#" },
 ]
 
 export function Sidebar() {
