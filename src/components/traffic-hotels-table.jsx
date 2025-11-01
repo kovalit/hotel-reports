@@ -87,11 +87,11 @@ export function TrafficHotelsTable({ hotels }) {
         <table className="w-full">
           <thead className="bg-muted/50 border-b border-border">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground">
                 №
               </th>
               <th
-                className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted/70"
+                className="px-4 py-3 text-left text-xs font-medium text-muted-foreground cursor-pointer hover:bg-muted/70"
                 onClick={() => handleSort("label")}
               >
                 <div className="flex items-center gap-1">
@@ -100,7 +100,7 @@ export function TrafficHotelsTable({ hotels }) {
                 </div>
               </th>
               <th
-                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted/70"
+                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:bg-muted/70"
                 onClick={() => handleSort("count")}
               >
                 <div className="flex items-center justify-end gap-1">
@@ -109,7 +109,7 @@ export function TrafficHotelsTable({ hotels }) {
                 </div>
               </th>
               <th
-                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted/70"
+                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:bg-muted/70"
                 onClick={() => handleSort("avg_price")}
               >
                 <div className="flex items-center justify-end gap-1">
@@ -118,7 +118,7 @@ export function TrafficHotelsTable({ hotels }) {
                 </div>
               </th>
               <th
-                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted/70"
+                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:bg-muted/70"
                 onClick={() => handleSort("amount_price")}
               >
                 <div className="flex items-center justify-end gap-1">
@@ -126,11 +126,11 @@ export function TrafficHotelsTable({ hotels }) {
                   <SortIcon columnKey="amount_price" />
                 </div>
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground">
                 Размер комиссии
               </th>
               <th
-                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted/70"
+                className="px-4 py-3 text-right text-xs font-medium text-muted-foreground ursor-pointer hover:bg-muted/70"
                 onClick={() => handleSort("commission")}
               >
                 <div className="flex items-center justify-end gap-1">

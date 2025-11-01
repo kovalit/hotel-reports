@@ -22,6 +22,16 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
+          test: /\.m?js/,
+          type: "javascript/auto",
+        },
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
@@ -51,7 +61,6 @@ module.exports = (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./public/index.html",
-        favicon: "./public/favicon.ico",
       }),
       new MiniCssExtractPlugin({
         filename: isDevelopment ? "[name].css" : "[name].[contenthash].css",

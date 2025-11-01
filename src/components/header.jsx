@@ -14,7 +14,7 @@ export function Header() {
           <p className="text-xs text-muted-foreground">admin@wawelberg.com</p>
         </div>
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
-          <span className="text-sm font-semibold text-primary-foreground">АД</span>
+          <span className="text-sm font-semibold text-primary-foreground">А</span>
         </div>
       </div>
     </header>

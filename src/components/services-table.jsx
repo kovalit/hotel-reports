@@ -64,7 +64,7 @@ export function ServicesTable({ data }) {
     <div className="space-y-4">
       <h2 className="text-lg font-semibold text-foreground">Список услуг</h2>
       <div className="overflow-x-auto bg-white rounded-lg">
-        <table className="w-full bg-white">
+        <table className="w-full bg-white border">
           <thead>
             <tr className="border-b bg-muted/50">
               <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">№</th>

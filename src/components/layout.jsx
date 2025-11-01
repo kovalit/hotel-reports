@@ -8,7 +8,7 @@ export function Layout() {
       <Header />
       <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-white">
           <div className="mx-auto max-w-7xl">
             <Outlet />
           </div>

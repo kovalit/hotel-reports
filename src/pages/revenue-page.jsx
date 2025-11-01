@@ -43,17 +43,14 @@ export function RevenuePage() {
       {/* Header with date picker */}
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Доходы</h1>
-        <DateRangePicker
-          startDate={startDate}
-          endDate={endDate}
-          onStartDateChange={setStartDate}
-          onEndDateChange={setEndDate}
-        />
+
       </div>
 
+      <div className="flex items-center justify-between">
       <div className="flex gap-2 flex-wrap">
         {months.map((month) => (
           <Button
+          className="cursor-pointer rounded-xl border-0"
             key={month.name}
             variant={startDate === month.start && endDate === month.end ? "default" : "outline"}
             onClick={() => handleMonthClick(month.start, month.end)}
@@ -61,6 +58,14 @@ export function RevenuePage() {
             {month.name}
           </Button>
         ))}
+      </div>
+
+      <DateRangePicker
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={setStartDate}
+          onEndDateChange={setEndDate}
+      />
       </div>
 
       {/* Revenue table */}
