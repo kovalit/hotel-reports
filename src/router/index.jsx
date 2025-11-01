@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"
 import { BookingReportPage } from "../pages/booking-report-page"
-import { IncomeReportPage } from "../pages/income-report-page"
 import { ServicesReportPage } from "../pages/services-report-page"
 import { TrafficReportPage } from "../pages/traffic-report-page"
 import { PurchasesReportPage } from "../pages/purchases-report-page"
@@ -40,10 +39,6 @@ export const router = createBrowserRouter([
       {
         path: "revenue",
         element: <RevenuePage />,
-      },
-      {
-        path: "income-report",
-        element: <IncomeReportPage />,
       },
     ],
   },
